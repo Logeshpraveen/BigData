@@ -1,0 +1,9 @@
+Explanation for Technology which i used to Create this Architecture:
+
+1. Whenever we get the Data from Web application/Mobile application Data will fall through the Kafka because when we get multiple events at a time there is a possibility of Data get lost. To avoid this we are using the Kafka
+2. Kafka will send the every event one by one based on FIFO method to Spark Streaming.
+3. In Spark Streaming we will Validate the whether we getting the Data as per our Requirement
+4. Once the Data Validation is over the User id and their Current events will store to HDFS for the Future purpose
+5. Parallelly Spark Streaming will load the Data to HBASE for the current Event
+6. Parallelly based on User ID Spark Streaming  fetch the Particular User data like their Last visits, purchases, cart amounts, pre-defined events (add to cart, whishlisted products) from the HBase
+7. After the Processing  the Web/Mobile Application will interact with the Hbase and get the real time Data
